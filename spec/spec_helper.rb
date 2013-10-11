@@ -1,3 +1,6 @@
+require_relative '../lib/artist'
+require_relative '../lib/song'
+require_relative '../lib/genre'
 RSpec.configure do |config|
   # Use color in STDOUT
   config.color_enabled = true
