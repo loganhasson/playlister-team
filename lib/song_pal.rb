@@ -1,4 +1,6 @@
 require 'pry'
+require 'erb'
+
 require_relative 'artist'
 require_relative 'genre'
 require_relative 'song'
@@ -87,6 +89,49 @@ SongPal.split_song_info
 SongPal.create_artists
 SongPal.create_genres
 SongPal.create_songs
-binding.pry
 
-# For every file, make the artist, then the genre, then the song?
+artists_index = ERB.new(File.open('lib/templates/artists.erb').read)
+@artists = Artist.all
+
+File.open('_site/artists/index.html', 'w+') do |f|
+  f << artists_index.result
+end
+
+genres_index = ERB.new(File.open('lib/templates/genres.erb').read)
+@genres = Genre.all
+
+File.open('_site/genres/index.html', 'w+') do |f|
+  f << genres_index.result
+end
+
+songs_index = ERB.new(File.open('lib/templates/songs.erb').read)
+@songs = Song.all
+
+File.open('_site/songs/index.html', 'w+') do |f|
+  f << songs_index.result
+end
+
+artist_show = ERB.new(File.open('lib/templates/artist_show.erb').read)
+@artists.each do |a|
+  @artist = a
+  File.open("_site/artists/#{@artist.name.gsub(' ', '_')}.html", "w+") do |f|
+    f << artist_show.result
+  end
+end
+
+genre_show = ERB.new(File.open('lib/templates/genre_show.erb').read)
+@genres.each do |g|
+  @genre = g
+  File.open("_site/genres/#{@genre.name.gsub(' ', '_')}.html", "w+") do |f|
+    f << genre_show.result
+  end
+end
+
+song_show = ERB.new(File.open('lib/templates/song_show.erb').read)
+@songs.each do |s|
+  @song = s
+  File.open("_site/songs/#{@song.name.gsub(' ', '_')}.html", "w+") do |f|
+    f << song_show.result
+  end
+end
+

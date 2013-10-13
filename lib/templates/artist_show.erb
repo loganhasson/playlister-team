@@ -1,0 +1,12 @@
+<html>
+<body>
+  <h1><%= @artist.name %> - <%= @artist.songs.size %> Songs</h1>
+  <ol>
+    <% @artist.songs.sort_by { |s| s.name }.each do |song| %>
+      <li>
+        <p><strong>Song: </strong><a href="../songs/<%= song.name.gsub(' ','_') %>.html"><%= song.name %></a> - <em><a href="../genres/<%= song.genre.name.gsub(' ','_') %>.html"><%= song.genre.name %></a></em></p>
+      </li>
+    <% end %>
+  </ol>
+</body>
+</html>

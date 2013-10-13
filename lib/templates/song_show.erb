@@ -1,0 +1,7 @@
+<html>
+<body>
+  <h1><%= @song.name %></h1>
+  <p><strong>Artist: </strong><a href="../artists/<%= @song.artist.name.gsub(' ','_') %>.html"><%= @song.artist.name %></a><br />
+  <strong>Genre: </strong><a href="../genres/<%= @song.genre.name.gsub(' ', '_') %>.html"><%= @song.genre.name %></a></p>
+</body>
+</html>

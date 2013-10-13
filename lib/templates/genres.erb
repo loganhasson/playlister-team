@@ -1,0 +1,14 @@
+<html>
+<body>
+  <h1>Genres: <%= @genres.count %> total</h1>
+  <ul>
+    <% @genres.sort_by { |g| -g.songs.size }.each do |g| %>
+      <li>
+        <p><strong>Genre: <a href="<%= g.name.gsub(' ', '_') %>.html"><%= g.name %></a></strong><br />
+        <em>Song Count: <%= g.songs.size %><br />
+        <em>Artist Count: <%= g.artists.size %></em></p>
+      </li>
+    <% end %>
+  </ul>
+</body>
+</html>

@@ -17,6 +17,7 @@ class Artist
   def add_song(song)
     self.songs << song
     self.genres << song.genre
+    song.artist = self
     if genre_has_artist?(song.genre)
       song.genre.artists << self
     end
