@@ -14,8 +14,7 @@ class SongPal
       split = track.split(' - ')
       artist = split[0]
       song = split[1].split(' [')[0]
-      binding.pry
-      genre = split[1].match(/(?<=\[)\w*(?=\])/,'')
+      genre = split[1].match(/(?<=\[)\w*(?=\])/).to_s
       binding.pry
     end
   end
